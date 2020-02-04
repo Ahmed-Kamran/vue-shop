@@ -1,0 +1,133 @@
+<template>
+  <div class="profile">
+  <div class="container h-100" >
+ <div class="profile-content">
+
+          <ul class="nav nav-pills ml-3" id="myTab" role="tablist">
+
+            <li class="nav-item">
+              <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link"  id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="false">Account settings</a>
+            </li>
+           
+          </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active pt-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                  <div class="container">
+                      <div class="row">
+                        
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <input type="text" name=""  placeholder="Full name" class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <input type="text"   placeholder="Phone" class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <input type="text"   placeholder="Address" class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="col-md-8">
+                          <div class="form-group">
+                            <input type="text"   placeholder="Postcode" class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                              <input type="submit"  value="Save Changes" class="btn btn-primary w-100">
+                          </div>
+                        </div>
+
+                      </div>
+                  </div>
+                
+                </div>
+
+                <div class="tab-pane fade pt-3" id="account" role="tabpanel" aria-labelledby="account-tab">
+                  <div class="container">
+                      <div class="row">
+                        <div class="col-md-">
+                            <div class="alert alert-info">
+                              Please use the Reset password email button for reseting the password. The form doens't work currently
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <input type="text"   placeholder="User name" class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <input type="text"   placeholder="Email address" class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <input type="text"   placeholder="New password" class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <input type="text"   placeholder="Confirm password" class="form-control">
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                              <input type="file"  class="form-control">
+                           </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                              <input type="submit" value="Save Changes" class="btn btn-primary w-100">
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                              <input type="button" value="Reset password email" class="btn btn-success w-100">
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+
+            </div>
+            
+          </div>
+
+      </div>
+    
+  </div>
+</template>
+
+<script>
+export default {
+  name: "profile",
+  props: {
+    msg: String
+  }
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+
+</style>

@@ -46,37 +46,37 @@
                 <!-- sidebar-menu  -->
                 <div class=" sidebar-item sidebar-menu">
                     <ul>
-                        <li class="header-menu">
+                        <li class="header-menu d-flex">
                             <span>Menu</span>
                         </li>
 
                         <li>
-                            <router-link to="/admin/overview">
+                            <router-link to="/admin/overview" class="d-flex">
                                 <i class="fa fa-chart-line"></i>
                                 <span>Overview</span>
                             </router-link>
                         </li>
                         <li>
-                            <router-link to="/admin/products">
+                            <router-link to="/admin/products" class="d-flex">
                                 <i class="fab fa-amazon"></i>
                                 <span>Products</span>
                             </router-link>
                         </li>
                         <li>
-                            <router-link to="/admin/order">
+                            <router-link to="/admin/order" class="d-flex">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Orders</span>
                             </router-link>
                         </li>
 
                         <li>
-                            <a to="/admin/profile">
+                            <router-link to="/admin/profile" class="d-flex">
                                 <i class="fa fa-user"></i>
                                 <span>Profile</span>
-                            </a>
+                            </router-link>
                         </li>
                         <li>
-                            <a href="#" @click="logout()">
+                            <a href="#" @click="logout()" class="d-flex">
                                 <i class="fa fa-power-off"></i>
                                 <span>Logout</span>
                             </a>
