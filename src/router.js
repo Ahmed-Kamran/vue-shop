@@ -6,7 +6,9 @@ import Overview from "./components/Overview.vue";
 import Products from "./components/Products.vue";
 import Order from "./components/Order.vue";
 import Profile from "./components/profile.vue";
-import { fb } from './firebase';
+import {
+    fb
+} from './firebase';
 
 Vue.use(Router);
 
@@ -52,6 +54,12 @@ const router = new Router({
             name: "about",
             component: () =>
                 import ("./views/About.vue")
+        },
+        {
+            path: "/checkout",
+            name: "checkout",
+            component: () =>
+                import ("./views/Checkout.vue")
         }
 
         // {
