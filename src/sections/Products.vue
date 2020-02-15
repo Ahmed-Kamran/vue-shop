@@ -1,68 +1,75 @@
 <template>
   <div class="products" id="products">
-      <div class="container">
-          <h1 class="text-center p-5">Our Products</h1>
-          <div class="row">
-              
-              <div class="col-md-4">
-                  <div class="card product-item">
-                    <img src="/img/products/product1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Surface Book 2</h5>
-                            <p class="card-text">
-                                Complete your device with Office 365 and get 1TB cloud storage, Excel, Word, PowerPoint & more. Select your suite during checkout.
-                            </p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
+    <div class="container">
+      <h1 class="text-center p-5">Our Products List</h1>
+      <div class="row">
+        <div class="col-md-4" v-for="product in products">
+          <div class="card product-item">
+            <carousel :perPage="1">
+              <slide v-for="(image, index) in product.images" :key="index.id">
+                <img :src="image" class="card-img-top" alt="..." width="250px" />
+              </slide>
+              <!-- <slide>Slide 2 Content</slide> -->
+            </carousel>
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h5 class="card-title d-flex">{{product.name}}</h5>
+                <h5 class="card-price d-flex">{{product.price | currency}}</h5>
               </div>
 
-              <div class="col-md-4">
-                  <div class="card product-item">
-                    <img src="/img/products/product2.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Surface Laptop 2</h5>
-                            <p class="card-text">
-                               Style and speed. Go beyond the traditional with new Surface Laptop 2. Featuring improved performance and the full Windows 10 Home experience.
-                            </p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
-              </div>
-
-              <div class="col-md-4">
-                  <div class="card product-item">
-                    <img src="/img/products/product3.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Surface Studio 2</h5>
-                            <p class="card-text">
-                                    The ultimate creative studio. Let your ideas flow with brilliant color, blazing graphics, faster processors, intuitive tools, and a stunning, adjustable 28” display.
-
-                            </p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
-              </div>
+              <!-- <p class="card-text" v-html="product.description"></p> -->
+              <!-- <button class="btn btn-primary d-flex">Add to Cart</button> -->
+              <add-to-cart
+                :image="getImage(product.images)"
+                :p-id="product.id"
+                :name="product.name"
+                :price="product.price"
+              ></add-to-cart>
+              <!-- <div class="d-flex justify-content-between"></div> -->
+            </div>
           </div>
+        </div>
       </div>
-    
+    </div>
   </div>
 </template>
 
 <script>
+import { VueEditor } from "vue2-editor";
+import { db } from "../firebase";
+
 export default {
-  name: "Products",
+  name: "Products-list",
   props: {
     msg: String
+  },
+
+  data() {
+    return {
+      products: []
+    };
+  },
+
+  methods: {
+    getImage(images) {
+      return images[0];
+    }
+  },
+
+  firestore() {
+    return {
+      products: db.collection("products")
+    };
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    .products{
-        margin-top: 7rem;
-        background: #f2f2f2;
-        padding-bottom: 3rem;
-    }
+.products {
+  margin-top: 7rem;
+  background: #f2f2f2;
+  padding-bottom: 3rem;
+}
 </style>
