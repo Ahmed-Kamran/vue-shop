@@ -26,7 +26,7 @@
           </ul>
         </div>
         <div class="col-md-4">
-          <p>Total Price : {{ this.$store.getters.totalPrice | currency }}</p>
+          <p>Total Price : {{ this.$store.getters.totalPrice | currency}}</p>
 
           <button class="btn btn-primary" @click="pay">Checkout</button>
           <!-- <form action="/charge" method="post" id="payment-form">
@@ -61,26 +61,40 @@ export default {
 
   methods: {
     pay() {
-      stripe
-        .redirectToCheckout({
-          // sessionId: "{{CHECKOUT_SESSION_ID}}"
-          sessionId: this.sessionId.id
+      //data = {id:100,id:100}
+      let data = this.$store.state.cart.map(item => ({
+        [item.productId]: item.productQuantity
+      }));
+      data = Object.assign({}, ...data);
+      // console.log(data);
+      axios
+        .get(
+          "https://us-central1-vue-shop-ebb44.cloudfunctions.net/CheckoutSession",
+          // "http://localhost:5000/vue-shop-ebb44/us-central1/CheckoutSession",
+          {
+            params: {
+              products: data
+            }
+          }
+        )
+        .then(response => {
+          this.sessionId = response.data;
+          console.log(response.data);
+
+          stripe
+            .redirectToCheckout({
+              // sessionId: "{{CHECKOUT_SESSION_ID}}"
+              sessionId: this.sessionId.id
+            })
+            .then(function(result) {});
         })
-        .then(function(result) {});
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
 
-  created() {
-    axios
-      .post("http://localhost:5000/vue-shop-ebb44/us-central1/CheckoutSession")
-      .then(response => {
-        this.sessionId = response.data;
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+  created() {}
 };
 
 // // Create a Stripe client.
